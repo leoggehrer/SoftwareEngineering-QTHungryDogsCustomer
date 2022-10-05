@@ -1,40 +1,49 @@
-@*@GeneratedCode*@
+@*@CustomCode*@
 @model QTHungryDogsCustomer.AspMvc.Models.Base.Restaurant
 
+@{
+    var style = "";
+    var openState = Model.OpenState;
+    var openStateText = openState.ToString();
+
+    if (openState == QTHungryDogsCustomer.Logic.Modules.Common.OpenState.ClosedPermanent)
+    {
+        style += "color: red;";
+        openStateText = "The restaurant is permanently closed.";
+    }
+    else if ((openState & QTHungryDogsCustomer.Logic.Modules.Common.OpenState.IsBusy) > 0)
+    {
+        openStateText = "Open (busy)";
+        style += "color: green;";
+    }
+    else if ((openState & QTHungryDogsCustomer.Logic.Modules.Common.OpenState.ClosedState) > 0)
+    {
+        openStateText = "Closed";
+        style += "color: orange;";
+    }
+    else if ((openState & QTHungryDogsCustomer.Logic.Modules.Common.OpenState.OpenState) > 0)
+    {
+        var now = DateTime.Now;
+        var fromTo = Model.OpeningStates.FirstOrDefault(e => e.IsBetween(now));
+
+        openStateText = "Open";
+        if (fromTo != null && fromTo.To.AddMinutes(-30) <= now)
+        {
+            openStateText += " - close soon";
+        }
+        style += "color: green;";
+    }
+}
+
 <tr>
- <td>
-  @Html.DisplayFor(model => model.DisplayName)
- </td>
- <td>
-  @Html.DisplayFor(model => model.OwnerName)
- </td>
- <td>
-  @Html.DisplayFor(model => model.UniqueName)
- </td>
- <td>
-  @Html.DisplayFor(model => model.Email)
- </td>
- <td>
-  @Html.DisplayFor(model => model.AddressStreet)
- </td>
- <td>
-  @Html.DisplayFor(model => model.AddressHousenumber)
- </td>
- <td>
-  @Html.DisplayFor(model => model.AddressZipcode)
- </td>
- <td>
-  @Html.DisplayFor(model => model.AddressCity)
- </td>
- <td>
-  @Html.DisplayFor(model => model.OpenState)
- </td>
- <td>
-  @Html.DisplayFor(model => model.State)
- </td>
- <td>
-  @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-  @Html.ActionLink("Details", "Details", new { id=Model.Id }) |
-  @Html.ActionLink("Delete", "Delete", new { id=Model.Id })
- </td>
+    <td>
+        <strong>@Html.DisplayFor(model => model.DisplayName)</strong>
+        <br />
+        @Html.DisplayFor(model => model.AddressZipcode) @Html.DisplayFor(model => model.AddressCity)
+        <br />
+        <p style="@style">@openStateText</p>
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id=Model.Id })
+    </td>
 </tr>

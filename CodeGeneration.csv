@@ -26,5 +26,8 @@ AspMvc;Service;All;Generate;True
 AspMvc;View;All;Generate;True
 AspMvc;AddServices;All;Generate;True
 
+AspMvc;View;ServiceModels.Base.OpeningHour;Generate;False
+AspMvc;FilterModel;ServiceModels.Base.OpeningHour;Generate;False
+
 WebApi;Property;App.EntityType.EntityTypeId;Attributes;System.Text.Json.Serialization.JsonIgnore
 AspMvc;Property;App.ColumnInfoFilter.EntityTypeId;Generate;False
