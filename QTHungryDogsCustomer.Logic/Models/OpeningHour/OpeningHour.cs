@@ -1,7 +1,7 @@
-﻿
-using QTHungryDogsCustomer.Logic.Modules.Common;
+﻿using QTHungryDogsCustomer.Logic.Modules.Common;
+using QTHungryDogsCustomer.Logic.ServiceModels;
 
-namespace QTHungryDogsCustomer.Logic.ServiceModels.Base
+namespace QTHungryDogsCustomer.Logic.Models.OpeningHour
 {
     public class OpeningHour : VersionService
     {

@@ -8,7 +8,10 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@("Home")</a>
         </li>
-@*#if ACCOUNT_ON*@@*
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Restaurants" asp-action="Index">@("Restaurants-Info")</a>
+        </li>
+        @*#if ACCOUNT_ON*@@*
         @if (sessionWrapper.LoginSession != null)
         {
         }

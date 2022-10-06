@@ -1,4 +1,5 @@
-﻿using QTHungryDogsCustomer.Logic.Modules.Common;
+﻿using QTHungryDogsCustomer.Logic.Models.OpeningHour;
+using QTHungryDogsCustomer.Logic.Modules.Common;
 
 namespace QTHungryDogsCustomer.Logic.ServiceModels.Base
 {
